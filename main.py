@@ -1,9 +1,7 @@
-import sqlite3
-import requests
-import logging
+import sqlite3, requests, logging, datetime
 from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import List
@@ -171,3 +169,13 @@ async def get_available_names():
     except Exception as e:
         logger.error(f"Failed to retrieve available names: {str(e)}")
         return {"error": f"Failed to retrieve available names: {str(e)}"}
+
+# 健康檢查路由（回傳狀態）    
+@app.get("/health")
+async def health_check():
+    return JSONResponse(content={"status": "ok", "time": datetime.datetime.utcnow().isoformat()})
+
+# ping 回應（簡單測試）
+@app.get("/ping")
+async def ping():
+    return "pong"
