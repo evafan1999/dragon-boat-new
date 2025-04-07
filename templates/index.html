@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dragon Boat Team Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+    <link rel="icon" href="static/image/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <div>
+            <h1>派兜出席表</h1>
+            <div>
+                <label for="selectDate" class="form-label">Select Date:</label>
+                <select id="selectDate" class="form-select"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4">
+                <div id="bigDragonTableContainer">
+                    <table class="table table-sm table-bordered" style="text-align: center; vertical-align: middle; width: 100%; max-width: 100%;">
+                        <caption class="caption-top">1船 <span id="bigDragonDate"></span></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 20%;">#</th>
+                                <th scope="col">左</th>
+                                <th scope="col">右</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paddleTableBody" style="text-align: center; vertical-align: middle;">
+                            <!-- 這裡是大龍的選擇下拉 -->
+                            <tr><td style="width: 20%;">0</td><td><select class="form-select" id="left_0"></select></td><td><select class="form-select" id="right_0"></select></td></tr>
+                            <tr><td style="width: 20%;">1</td><td><select class="form-select" id="left_1"></select></td><td><select class="form-select" id="right_1"></select></td></tr>
+                            <tr><td style="width: 20%;">2</td><td><select class="form-select" id="left_2"></select></td><td><select class="form-select" id="right_2"></select></td></tr>
+                            <tr><td style="width: 20%;">3</td><td><select class="form-select" id="left_3"></select></td><td><select class="form-select" id="right_3"></select></td></tr>
+                            <tr><td style="width: 20%;">4</td><td><select class="form-select" id="left_4"></select></td><td><select class="form-select" id="right_4"></select></td></tr>
+                            <tr><td style="width: 20%;">5</td><td><select class="form-select" id="left_5"></select></td><td><select class="form-select" id="right_5"></select></td></tr>
+                            <tr><td style="width: 20%;">6</td><td><select class="form-select" id="left_6"></select></td><td><select class="form-select" id="right_6"></select></td></tr>
+                            <tr><td style="width: 20%;">7</td><td><select class="form-select" id="left_7"></select></td><td><select class="form-select" id="right_7"></select></td></tr>
+                            <tr><td style="width: 20%;">8</td><td><select class="form-select" id="left_8"></select></td><td><select class="form-select" id="right_8"></select></td></tr>
+                            <tr><td style="width: 20%;">舵手</td><td><select class="form-select" id="left_helmsman"></select></td><td></td></tr>
+                            <tr><td style="width: 20%;">重量</td><td id="leftWeight">0</td><td id="rightWeight">0</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between">
+                        <button onclick="clearTable('bigDragonTableContainer')" class="btn" style="background-color: #33312E; color: #E0E2DB;">清除表格</button>
+                        <button onclick="exportTableToImage('bigDragonTableContainer', '大龍')" class="btn" style="background-color: #b8bdb5; color: #33312e;">Print</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 mb-4">
+                <div id="smallDragonTableContainer">
+                    <table class="table table-sm table-bordered" style="text-align: center; vertical-align: middle; width: 100%; max-width: 100%;">
+                        <caption class="caption-top">2船 <span id="smallDragonDate"></span></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 20%;">#</th>
+                                <th scope="col">左</th>
+                                <th scope="col">右</th>
+                            </tr>
+                        </thead>
+                        <tbody id="smallPaddleTableBody" style="text-align: center; vertical-align: middle;">
+                            <!-- 這裡是小龍的選擇下拉 -->
+                            <tr><td style="width: 20%;">0</td><td><select class="form-select" id="small_left_0"></select></td><td><select class="form-select" id="small_right_0"></select></td></tr>
+                            <tr><td style="width: 20%;">1</td><td><select class="form-select" id="small_left_1"></select></td><td><select class="form-select" id="small_right_1"></select></td></tr>
+                            <tr><td style="width: 20%;">2</td><td><select class="form-select" id="small_left_2"></select></td><td><select class="form-select" id="small_right_2"></select></td></tr>
+                            <tr><td style="width: 20%;">3</td><td><select class="form-select" id="small_left_3"></select></td><td><select class="form-select" id="small_right_3"></select></td></tr>
+                            <tr><td style="width: 20%;">4</td><td><select class="form-select" id="small_left_4"></select></td><td><select class="form-select" id="small_right_4"></select></td></tr>
+                            <tr><td style="width: 20%;">5</td><td><select class="form-select" id="small_left_5"></select></td><td><select class="form-select" id="small_right_5"></select></td></tr>
+                            <tr><td style="width: 20%;">6</td><td><select class="form-select" id="small_left_6"></select></td><td><select class="form-select" id="small_right_6"></select></td></tr>
+                            <tr><td style="width: 20%;">7</td><td><select class="form-select" id="small_left_7"></select></td><td><select class="form-select" id="small_right_7"></select></td></tr>
+                            <tr><td style="width: 20%;">8</td><td><select class="form-select" id="small_left_8"></select></td><td><select class="form-select" id="small_right_8"></select></td></tr>
+                            <tr><td style="width: 20%;">舵手</td><td><select class="form-select" id="small_helmsman"></select></td><td></td></tr>
+                            <tr><td style="width: 20%;">重量</td><td id="smallLeftWeight">0</td><td id="smallRightWeight">0</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between">
+                        <button onclick="clearTable('smallDragonTableContainer')" class="btn" style="background-color: #33312E; color: #E0E2DB;">清除表格</button>
+                        <button onclick="exportTableToImage('smallDragonTableContainer', '小龍')" class="btn" style="background-color: #D2D4C8; color: #33312e;">Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h4 class="mt-4">出席人員</h4>
+            <div id="attendanceList" class="mt-3"></div>
+        </div>
+        <button onclick="window.location.href='/members'" class="btn" style="background-color: #33312E; color: #E0E2DB;">Member Management</button>
+        <div id="loading" style="display: none;">Loading...</div>
+    </div>
+    <script src="/static/index.js"></script>
+</body>
+</html>

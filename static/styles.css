@@ -1,0 +1,147 @@
+/* 共用樣式 */
+.card {
+    margin: 5px 0;
+}
+#loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    font-size: 2em;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: block;
+    padding: 10px 15px;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+}
+
+.pagination .page-item.disabled a {
+    color: #6c757d;
+    pointer-events: none;
+}
+
+
+.table table-sm table-bordered{
+    max-width: 800px;
+}
+
+.form-select{
+    vertical-align: middle;
+}
+
+footer {
+    background-color: #b8bdb5;
+    padding: 10px 0;
+}
+footer .text-center {
+    padding: 10px 0;
+}
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+/* 成員管理頁面樣式 */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+}
+.form-control, .form-select {
+    margin-bottom: 10px;
+}
+.btn {
+    margin-bottom: 10px;
+}
+.table-responsive {
+    margin-top: 10px;
+}
+
+/* 修正表格顯示 */
+.fixed-column {
+    width: 20%;
+    white-space: nowrap;
+}
+
+/* 手機樣式 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+    .table {
+        max-width: 95%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .table thead,
+    .table tbody,
+    .table tr,
+    .table td,
+    .table th {
+        display: block;
+    }
+    .table thead tr {
+        display: none;
+    }
+    .table tbody tr {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .table tbody td {
+        display: block;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .table tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+    }
+}
